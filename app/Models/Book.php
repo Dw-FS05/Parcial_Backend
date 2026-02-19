@@ -17,5 +17,10 @@ class Book extends Model
         'available_copies',
         'is_available',
     ];
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 }
 
