@@ -14,7 +14,6 @@ class LoanController extends Controller
     {
         $validated = $request->validated();
 
-        @var 
         $book = Book::findOrFail($validated['book_id']);
 
         if ($book->available_copies <= 0) {
@@ -38,19 +37,18 @@ class LoanController extends Controller
         $book->save();
 
         return response()->json([
-            'message' => 'Préstamo registrado correctamente.',
+            'message' => 'Prestamo registrado correctamente.',
             'data' => $loan,
         ], 201);
     }
 
     public function return(int $loanId): JsonResponse
     {
-        @var 
         $loan = Loan::with('book')->findOrFail($loanId);
 
         if ($loan->returned_at !== null) {
             return response()->json([
-                'message' => 'Este préstamo ya fue devuelto previamente.',
+                'message' => 'Este prestamo ya fue devuelto previamente.',
             ], 422);
         }
 
@@ -67,9 +65,8 @@ class LoanController extends Controller
         $book->save();
 
         return response()->json([
-            'message' => 'Devolución registrada correctamente.',
+            'message' => 'Devolucion registrada correctamente.',
             'data' => $loan->fresh(),
         ], 200);
     }
 }
-
