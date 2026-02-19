@@ -12,11 +12,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 Route::get('/loans/history', [LoanHistoryController::class, 'index']);
 
-// Consulta de catálogo de libros
 Route::get('/books', [BookController::class, 'index']);
 
-// Préstamo de libro
 Route::post('/loans', [LoanController::class, 'store']);
 
-// Devolución de libro
 Route::post('/returns/{loanId}', [LoanController::class, 'return']);
